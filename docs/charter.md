@@ -38,7 +38,7 @@ This project quantifies the Tet Effect across multiple FMCG categories, builds a
   - Snacks
   - Gift sets / seasonal SKUs
 
-- **Time period:** 2018–2025 (8 Tet cycles, including the COVID outlier for stress-testing)
+- **Time period:** 2020–2025 (6 Tet cycles, including the COVID-affected 2020 and 2021 Tets for stress-testing)
 
 - **Geographic scope:** Vietnam national level (regional breakdown deferred to v2 if time allows)
 

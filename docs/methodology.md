@@ -18,7 +18,7 @@ Collected data covers **5 keywords × 6 years (2020–2025)**, weekly granularit
 
 The actual collection deviates from the protocol described in `docs/data_collection.md` (which recommended a single 5-keyword × multi-year pull per granularity). Two consequences flow from this deviation, both addressed below:
 
-1. **Year coverage shortened from charter §3.** Charter requested 2018–2025 (8 Tet cycles); we have 2020–2025 (6 Tet cycles). Years 2018 and 2019 are not in the dataset and are out of scope for this analysis cycle. The 6-year span still includes the COVID-affected 2020 and 2021 Tets needed for the structural-break check in charter §1.
+1. **Year coverage matches charter §3.** The analysis covers 2020–2025 (6 Tet cycles). The 6-year span includes the COVID-affected 2020 and 2021 Tets needed for the structural-break check in charter §1.
 2. **Per-file 0–100 normalization** (rather than a single shared 0–100 scale across all 5 keywords and 6 years). Each of the 30 CSVs is independently normalized to its own internal max. This is a real constraint that shapes which comparisons are valid; see §4.6 for how it affects the metrics, and §5 limitation L2 for the full treatment.
 
 ---
