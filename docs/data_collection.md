@@ -1,6 +1,8 @@
 # Data Collection Protocol — Google Trends Vietnam
 
-This document defines the exact procedure used to pull the raw data that this project analyses. It is the canonical reference for reproducing the dataset.
+This document defines the **recommended** procedure for pulling Google Trends Vietnam data for this kind of analysis. It is the canonical reference for reproducing or extending the dataset.
+
+> **Note on actual collection (2026-06-12).** The data currently in `data/raw/` does *not* follow this protocol. It was collected as 30 separate per-file pulls (5 keywords × 6 years, one CSV each, 2020–2025) rather than the single 5-keyword multi-year pulls described below. The consequences are documented in `docs/methodology.md` §1.1 and §4.6 — chiefly that per-file normalization restricts which comparisons are valid, but does not invalidate the Tet-effect ratio metrics. This protocol document remains the recommended path for any future re-pull or replication.
 
 Read alongside `docs/methodology.md` (analytical approach and assumptions) and `docs/charter.md` (scope and timeline).
 
@@ -114,10 +116,10 @@ Week,bia: (Vietnam),banh keo: (Vietnam),nuoc ngot: (Vietnam),dau an: (Vietnam),s
 
 Notes:
 
-- **First two lines** are headers Google Trends prepends. The data loader will skip them.
-- **Column names** have diacritics stripped (`bánh kẹo` → `banh keo`). We will re-map to clean labels during cleaning.
-- **Time column** is named `Week` for Pull B and `Month` for Pull A.
-- **`<1` values** mean "below detection threshold" for that period — we handle this explicitly during cleaning, not silently drop or zero.
+- **First two lines** are headers Google Trends prepends. The data loader skips them with `pd.read_csv(..., skiprows=2)`.
+- **Column names preserve Vietnamese diacritics** (verified against actual export: `sữa: (Vietnam)`, `bánh kẹo: (Vietnam)`). The CSV is UTF-8 encoded; load with `encoding="utf-8"`.
+- **Time column** is named `Week` for weekly granularity and `Month` for monthly.
+- **`<1` values** mean "below detection threshold" for that period. The loader maps these to `0.5` and flags them in a `below_threshold` boolean column rather than silently dropping or zeroing them.
 
 ---
 
