@@ -141,6 +141,17 @@ Vietnamese internet penetration grows over 2020–2025, which would inflate late
 
 For category × year cells where the search index is flat at very low values (Google Trends returns `<1` for some weeks), we mark the cell as "below detection threshold" and exclude it from quantitative comparison rather than report unreliable estimates.
 
+### 4.9 Exploratory STL decomposition — visual only, never a metric source
+
+`notebooks/02_stl_decomposition.ipynb` applies Seasonal-Trend decomposition (STL; additive, `period=52`, robust) to the three Tet-sensitive categories (`banh_keo`, `bia`, `nuoc_ngot`) to *visually* isolate the repeating annual Tet shape from long-run drift and one-off shocks. **STL is used strictly as a qualitative / exploratory tool. No metric reported anywhere in this project is derived from it.** All official numbers (uplift %, peak timing, holiday dip %) come from the within-year baseline comparison of §4.1–§4.4.
+
+This boundary is deliberate and follows directly from §4.6. The baseline metrics are valid *because* each is a ratio computed inside a single per-file-normalized CSV, where the unknown scale constant `k_file` cancels. STL does the opposite: it ingests all six years concatenated into one series, so it operates **across** files and the per-file scale constants no longer cancel. Two consequences make STL unsuitable for quantitative claims here:
+
+1. **Year-boundary artifact.** Because each year is normalized 0–100 independently, the concatenated series can step at the Dec/Jan boundary purely from a change of scale rather than a change in behaviour. STL cannot tell an artificial scale step from a real one and will smear it across the trend, seasonal, and residual components.
+2. **Lunar-calendar drift contaminates the residual near Tet.** Mùng 1 moves up to three weeks across the Gregorian calendar (22 Jan in 2023 → 12 Feb in 2021), but a `period=52` seasonal template is anchored to the week-of-year and cannot track a moving holiday. The mismatch dumps into the residual. Empirically the **largest** near-Tet residuals fall in 2023 and 2024 — the two **non-COVID** years with the most extreme early/late Tet dates — which means the residual is **not** a clean COVID detector. The charter's COVID stress-test therefore stays on the year-by-year baseline metrics (reported separately for 2020/2021 per §5 L6), not on STL.
+
+What STL *does* contribute, and all it is allowed to contribute, is qualitative corroboration and discovery: the seasonal panel visually confirms a stable, repeating Tet shape for the three categories, and residuals **far** from Tet surface genuinely interpretable secondary events (e.g. a recurring September spike in `banh_keo` consistent with Tết Trung Thu / mooncake search). These are reported as observations and hypotheses, never as quantified results.
+
 ---
 
 ## 5. Limitations
@@ -185,5 +196,5 @@ This framing applies to the white paper, the LinkedIn content series, the Power 
 
 ---
 
-**Last updated:** 2026-06-11
-**Status:** Methodology v1 — locked for Week 1–3 execution; revisit at end-Week-4 checkpoint per charter §12.
+**Last updated:** 2026-06-13
+**Status:** Methodology v1 — locked for Week 1–3 execution; revisit at end-Week-4 checkpoint per charter §12. §4.9 (exploratory STL) added in Week 3.
