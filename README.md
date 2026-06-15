@@ -84,7 +84,7 @@ vn-fmcg-tet-effect/
 │       ├── whitepaper.pdf            ← the deliverable (figures embedded)
 │       ├── whitepaper.md             white paper source (Markdown)
 │       └── figures/                  figures embedded in the paper
-├── dashboards/                       Power BI artifacts (planned, Week 5)
+├── dashboards/                       Power BI artifacts (planned for v2)
 ├── scripts/
 │   └── build_all_code.py             regenerates docs/ALL_CODE.md
 ├── docs/
@@ -101,7 +101,7 @@ vn-fmcg-tet-effect/
 
 ## Project status
 
-**Analysis complete — white paper v1 published. Power BI dashboard in progress.**
+**v1 complete — repository, white paper, and figures published; LinkedIn series ready to distribute. Power BI dashboard deliberately deferred to v2.**
 
 | Phase | Status |
 |-------|--------|
@@ -113,9 +113,9 @@ vn-fmcg-tet-effect/
 | Time-series (STL) decomposition + Tết uplift calculation | ✅ |
 | Publication figures | ✅ |
 | White paper PDF (v1) | ✅ |
-| Power BI dashboard | ⏭ in progress |
 | LinkedIn content series | ⏭ drafts ready |
 | Publish + distribute | ⏭ Week 8 |
+| Power BI dashboard | 🗓 planned for v2 |
 
 **Target ship date:** 30 June 2026.
 
@@ -123,10 +123,16 @@ vn-fmcg-tet-effect/
 
 (Per [`docs/charter.md`](docs/charter.md) §5.)
 
+**v1 (this release):**
+
 1. **This GitHub repository** — public, reproducible, MIT-licensed.
-2. **White paper PDF** — [`output/whitepaper/whitepaper.pdf`](output/whitepaper/whitepaper.pdf) ✅ (v1 published, figures embedded).
-3. **Power BI interactive dashboard** — 4 pages; embedded link will appear here when published.
+2. **White paper PDF** — [`output/whitepaper/whitepaper.pdf`](output/whitepaper/whitepaper.pdf) ✅ (figures embedded).
+3. **Figures** — publication-quality charts in [`output/whitepaper/figures/`](output/whitepaper/figures/), reproducible from `notebooks/03_publication_figures.ipynb`.
 4. **LinkedIn content series** — 3 – 4 posts; working drafts in [`docs/linkedin-posts.md`](docs/linkedin-posts.md).
+
+**v2 (planned):**
+
+5. **Power BI interactive dashboard** — deliberately deferred from v1 to keep the first release focused on the reproducible analysis and white paper. Embedded link will appear here when published.
 
 ## Reproducing the analysis
 
